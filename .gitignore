@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+#dir
+.vs/
+bin/
+bin-int/
+
+#files
+*.user
