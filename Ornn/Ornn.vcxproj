@@ -150,6 +150,10 @@
     <ClInclude Include="src\Ornn\Application.h" />
     <ClInclude Include="src\Ornn\Core.h" />
     <ClInclude Include="src\Ornn\EntryPoint.h" />
+    <ClInclude Include="src\Ornn\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Ornn\Events\Event.h" />
+    <ClInclude Include="src\Ornn\Events\KeyEvent.h" />
+    <ClInclude Include="src\Ornn\Events\MouseEvent.h" />
     <ClInclude Include="src\Ornn\Log.h" />
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,9 @@
     <Filter Include="Ornn">
       <UniqueIdentifier>{02558A7C-EE8B-8B0D-9778-7110838E070F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Ornn\Events">
+      <UniqueIdentifier>{A60AF23C-12C0-6A32-9BB4-640907696136}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ornn.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Ornn\EntryPoint.h">
       <Filter>Ornn</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ornn\Events\ApplicationEvent.h">
+      <Filter>Ornn\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ornn\Events\Event.h">
+      <Filter>Ornn\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ornn\Events\KeyEvent.h">
+      <Filter>Ornn\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ornn\Events\MouseEvent.h">
+      <Filter>Ornn\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Ornn\Log.h">
       <Filter>Ornn</Filter>
