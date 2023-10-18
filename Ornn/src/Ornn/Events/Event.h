@@ -1,8 +1,6 @@
 #pragma once
 
-#include <string>
-#include <functional>
-
+#include "pch.h"
 #include "Ornn/Core.h"
 
 namespace Ornn {

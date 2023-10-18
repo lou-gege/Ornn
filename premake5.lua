@@ -10,6 +10,12 @@ workspace "Ornn"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Ornn/vendor/GLFW/include"
+
+include "Ornn/vendor/GLFW" --copy the premake5.lua in GLFW/ to here
+
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
@@ -65,6 +71,9 @@ project "Ornn"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "pch.h"
+	pchsource "Ornn/src/pch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -74,7 +83,14 @@ project "Ornn"
 	includedirs
 	{
     "%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

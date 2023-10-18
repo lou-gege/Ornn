@@ -1,3 +1,6 @@
 [submodule "Ornn/vendor/spdlog"]
 	path = Ornn/vendor/spdlog
 	url = git@github.com:gabime/spdlog.git
+[submodule "Ornn/vendor/GLFW"]
+	path = Ornn/vendor/GLFW
+	url = git@github.com:TheCherno/glfw.git
