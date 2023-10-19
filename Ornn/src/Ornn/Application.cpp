@@ -8,25 +8,16 @@ namespace Ornn {
 
 	Application::Application()
 	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 	Application::~Application()
 	{
 	}
 	void Application::Run()
 	{
-		WindowResizeEvent e(1280, 720);
-		if (e.IsInCategory(EventCategoryApplication))
+		while (m_Running)
 		{
-			ORNN_TRACE(e);
-		}
-		if (e.IsInCategory(EventCategoryInput))
-		{
-			ORNN_TRACE(e);
-		}
-
-		while (true)
-		{
-
+			m_Window->OnUpdate();
 		}
 	}
 }

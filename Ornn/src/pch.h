@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Ornn/Log.h"
+
 #ifdef ORNN_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

@@ -101,7 +101,9 @@ project "Ornn"
 		defines
 		{
 			"ORNN_PLATFORM_WINDOWS",
-			"ORNN_BUILD_DLL"
+			"ORNN_BUILD_DLL",
+
+			"ORNN_ENABLE_ASSERTS"
 		}
 
 		postbuildcommands
