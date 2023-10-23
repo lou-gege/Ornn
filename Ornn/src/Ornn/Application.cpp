@@ -3,6 +3,7 @@
 
 //#include "Ornn/Events/ApplicationEvent.h"
 #include "Ornn/Log.h"
+#include <glad/glad.h>
 
 namespace Ornn {
 
@@ -22,6 +23,9 @@ namespace Ornn {
 	{
 		while (m_Running)
 		{
+			glClearColor(1, 0, 1, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
+
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 

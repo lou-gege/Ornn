@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Ornn/vendor/GLFW/include"
+IncludeDir["Glad"] = "Ornn/vendor/Glad/include"
 
 include "Ornn/vendor/GLFW" --copy the premake5.lua in GLFW/ to here
+include "Ornn/vendor/Glad"
 
 project "Sandbox"
 	location "Sandbox"
@@ -87,12 +89,14 @@ project "Ornn"
 	{
     "%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -105,6 +109,7 @@ project "Ornn"
 		{
 			"ORNN_PLATFORM_WINDOWS",
 			"ORNN_BUILD_DLL",
+			"GLFW_INCLUDE_NONE",
 
 			"ORNN_ENABLE_ASSERTS"
 		}
