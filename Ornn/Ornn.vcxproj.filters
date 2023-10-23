@@ -37,6 +37,12 @@
     <ClInclude Include="src\Ornn\Events\MouseEvent.h">
       <Filter>Ornn\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ornn\Layer.h">
+      <Filter>Ornn</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ornn\LayerStack.h">
+      <Filter>Ornn</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ornn\Log.h">
       <Filter>Ornn</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ornn\Application.cpp">
+      <Filter>Ornn</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ornn\Layer.cpp">
+      <Filter>Ornn</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ornn\LayerStack.cpp">
       <Filter>Ornn</Filter>
     </ClCompile>
     <ClCompile Include="src\Ornn\Log.cpp">

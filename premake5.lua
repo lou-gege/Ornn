@@ -53,14 +53,17 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "ORNN_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ORNN_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "ORNN_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 project "Ornn"
@@ -113,12 +116,15 @@ project "Ornn"
 
 	filter "configurations:Debug"
 		defines "ORNN_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ORNN_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "ORNN_DIST"
+		buildoptions "/MD"
 		optimize "On"
