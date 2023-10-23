@@ -38,7 +38,6 @@ namespace Ornn {
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 
-		//这里不需要virtual吗
 		static Window* Create(const WindowProps& props = WindowProps());
 	};
 }
