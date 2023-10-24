@@ -4,3 +4,6 @@
 [submodule "Ornn/vendor/GLFW"]
 	path = Ornn/vendor/GLFW
 	url = git@github.com:TheCherno/glfw.git
+[submodule "Ornn/vendor/ImGui"]
+	path = Ornn/vendor/ImGui
+	url = git@github.com:TheCherno/imgui.git

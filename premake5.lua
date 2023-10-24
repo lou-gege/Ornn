@@ -14,9 +14,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Ornn/vendor/GLFW/include"
 IncludeDir["Glad"] = "Ornn/vendor/Glad/include"
+IncludeDir["ImGui"] = "Ornn/vendor/imgui"
 
 include "Ornn/vendor/GLFW" --copy the premake5.lua in GLFW/ to here
 include "Ornn/vendor/Glad"
+include "Ornn/vendor/imgui"
 
 project "Sandbox"
 	location "Sandbox"
@@ -90,13 +92,15 @@ project "Ornn"
     "%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 

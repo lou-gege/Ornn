@@ -5,6 +5,8 @@
 #include "Ornn/Log.h"
 #include "Ornn/Layer.h"
 
+#include "Ornn/ImGui/ImGuiLayer.h"
+
 // ---Entry Point-----------
 #include "Ornn/EntryPoint.h"
 // -------------------------
