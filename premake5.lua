@@ -1,5 +1,6 @@
 workspace "Ornn"
   architecture "x64"
+	startproject "Sandbox"
 
   configurations
   {
@@ -24,6 +25,7 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -47,7 +49,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -57,23 +58,24 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "ORNN_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ORNN_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "ORNN_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 project "Ornn"
 	location "Ornn"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -106,7 +108,6 @@ project "Ornn"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -114,8 +115,6 @@ project "Ornn"
 			"ORNN_PLATFORM_WINDOWS",
 			"ORNN_BUILD_DLL",
 			"GLFW_INCLUDE_NONE",
-
-			"ORNN_ENABLE_ASSERTS"
 		}
 
 		postbuildcommands
@@ -125,15 +124,15 @@ project "Ornn"
 
 	filter "configurations:Debug"
 		defines "ORNN_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ORNN_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "ORNN_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"

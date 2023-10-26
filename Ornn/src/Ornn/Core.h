@@ -10,6 +10,10 @@
 	#error Ornn only support Windows!
 #endif
 
+#ifdef ORNN_DEBUG
+	#define ORNN_ENABLE_ASSERTS
+#endif
+
 #ifdef ORNN_ENABLE_ASSERTS
 	#define ORNN_ASSERT(x, ...) { if(!(x)) { ORNN_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define ORNN_CORE_ASSERT(x, ...) { if(!(x)) { ORNN_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
