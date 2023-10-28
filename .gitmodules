@@ -7,3 +7,6 @@
 [submodule "Ornn/vendor/ImGui"]
 	path = Ornn/vendor/ImGui
 	url = git@github.com:TheCherno/imgui.git
+[submodule "Ornn/vendor/glm"]
+	path = Ornn/vendor/glm
+	url = https://github.com/g-truc/glm

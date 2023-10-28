@@ -7,6 +7,8 @@
 #include "Ornn/Events/ApplicationEvent.h"
 #include "Ornn/LayerStack.h"
 
+#include "Ornn/ImGui/ImGuiLayer.h"
+
 namespace Ornn {
 
 	class ORNN_API Application
@@ -29,6 +31,7 @@ namespace Ornn {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

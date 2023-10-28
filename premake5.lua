@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Ornn/vendor/GLFW/include"
 IncludeDir["Glad"] = "Ornn/vendor/Glad/include"
 IncludeDir["ImGui"] = "Ornn/vendor/imgui"
+IncludeDir["glm"] = "Ornn/vendor/glm"
 
 include "Ornn/vendor/GLFW" --copy the premake5.lua in GLFW/ to here
 include "Ornn/vendor/Glad"
@@ -39,7 +40,9 @@ project "Sandbox"
 	includedirs
 	{
 		"Ornn/vendor/spdlog/include",
-		"Ornn/src"
+		"Ornn/src",
+		"Ornn/vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -86,7 +89,9 @@ project "Ornn"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs
@@ -95,7 +100,8 @@ project "Ornn"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links

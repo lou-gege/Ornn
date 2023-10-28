@@ -1,5 +1,7 @@
 #include <Ornn.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer :public Ornn::Layer
 {
 public:
@@ -14,6 +16,13 @@ public:
 		if (Ornn::Input::IsKeyPressed(ORNN_KEY_TAB))
 			ORNN_TRACE("Tab key is pressed (poll)!");
 	}
+
+	//virtual void OnImGuiRender() override
+	//{
+	//	ImGui::Begin("Test");
+	//	ImGui::Text("Hello World");
+	//	ImGui::End();
+	//}
 
 	void OnEvent(Ornn::Event& event) override
 	{
@@ -34,7 +43,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer);
-		PushLayer(new Ornn::ImGuiLayer);
 	}
 	~Sandbox()
 	{
