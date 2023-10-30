@@ -40,3 +40,4 @@ bin-int/
 *.user
 *.sln
 *.vcxproj
+*imgui.ini

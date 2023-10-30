@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Ornn/Window.h"
+#include "Ornn/Renderer/GraphicsContext.h"
 
 #include "GLFW/glfw3.h"
 
@@ -30,6 +31,7 @@ namespace Ornn {
 
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
