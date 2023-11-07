@@ -11,6 +11,7 @@
 
 #include "Ornn/Renderer/Shader.h"
 #include "Ornn/Renderer/Buffer.h"
+#include "Ornn/Renderer/VertexArray.h"
 
 namespace Ornn {
 
@@ -38,10 +39,11 @@ namespace Ornn {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
-		std::unique_ptr<Shader> m_Shader;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
+
+		std::shared_ptr<Shader> m_BlueShader;
+		std::shared_ptr<VertexArray> m_SquareVA;
 	private:
 		static Application* s_Instance;
 	};
