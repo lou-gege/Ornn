@@ -9,10 +9,6 @@
 
 #include "Ornn/ImGui/ImGuiLayer.h"
 
-#include "Ornn/Renderer/Shader.h"
-#include "Ornn/Renderer/Buffer.h"
-#include "Ornn/Renderer/VertexArray.h"
-
 namespace Ornn {
 
 	class ORNN_API Application
@@ -38,12 +34,6 @@ namespace Ornn {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
 	private:
 		static Application* s_Instance;
 	};

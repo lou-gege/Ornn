@@ -11,6 +11,17 @@
  
 #include "Ornn/ImGui/ImGuiLayer.h"
 
+// ---Renderer------------------------
+#include "Ornn/Renderer/Renderer.h"
+#include "Ornn/Renderer/RenderCommand.h"
+
+#include "Ornn/Renderer/Buffer.h"
+#include "Ornn/Renderer/Shader.h"
+#include "Ornn/Renderer/VertexArray.h"
+
+#include "Ornn/Renderer/OrthographicCamera.h"
+// -----------------------------------
+
 // ---Entry Point-----------
 #include "Ornn/EntryPoint.h"
 // -------------------------
