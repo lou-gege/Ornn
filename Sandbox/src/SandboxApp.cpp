@@ -115,23 +115,24 @@ public:
 		m_BlueShader.reset(new Ornn::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Ornn::Timestep ts) override
 	{
+		//ORNN_TRACE("Delta Time: {0}ms, FPS: {1}", ts.GetMilliseconds(), (int)(1.0f / ts.GetSeconds()));
 		//ORNN_INFO("ExampleLayer::Update");
 		if (Ornn::Input::IsKeyPressed(ORNN_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
 		else if (Ornn::Input::IsKeyPressed(ORNN_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 
 		if (Ornn::Input::IsKeyPressed(ORNN_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
 		else if (Ornn::Input::IsKeyPressed(ORNN_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 
 		if (Ornn::Input::IsKeyPressed(ORNN_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * ts;
 		else if (Ornn::Input::IsKeyPressed(ORNN_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
 
 		Ornn::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Ornn::RenderCommand::Clear();
@@ -174,9 +175,9 @@ private:
 
 	Ornn::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 0.1f;
+	float m_CameraMoveSpeed = 1.0f;
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 1.0f;
+	float m_CameraRotationSpeed = 180.0f;
 };
 
 class Sandbox :public Ornn::Application

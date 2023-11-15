@@ -5,6 +5,8 @@
 #include "Ornn/Log.h"
 #include "Ornn/Layer.h"
 
+#include "Ornn/Core/Timestep.h"
+
 #include "Ornn/Input.h"
 #include "Ornn/KeyCodes.h"
 #include "Ornn/MouseButtonCodes.h"

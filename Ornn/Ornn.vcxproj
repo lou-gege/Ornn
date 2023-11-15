@@ -146,6 +146,7 @@
     <ClInclude Include="src\Ornn.h" />
     <ClInclude Include="src\Ornn\Application.h" />
     <ClInclude Include="src\Ornn\Core.h" />
+    <ClInclude Include="src\Ornn\Core\Timestep.h" />
     <ClInclude Include="src\Ornn\EntryPoint.h" />
     <ClInclude Include="src\Ornn\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Ornn\Events\Event.h" />

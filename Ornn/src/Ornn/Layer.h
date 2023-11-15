@@ -2,6 +2,7 @@
 
 #include "Ornn/Core.h"
 #include "Ornn/Events/Event.h"
+#include "Ornn/Core/Timestep.h"
 
 namespace Ornn {
 
@@ -13,7 +14,7 @@ namespace Ornn {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 
