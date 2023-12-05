@@ -21,7 +21,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		std::shared_ptr<Ornn::VertexBuffer> vertexBuffer;
+		Ornn::Ref<Ornn::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Ornn::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		Ornn::BufferLayout layout = {
@@ -32,27 +32,28 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Ornn::IndexBuffer> indexBuffer;
+		Ornn::Ref<Ornn::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Ornn::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		m_SquareVA.reset(Ornn::VertexArray::Create());
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		std::shared_ptr<Ornn::VertexBuffer> squareVB;
+		Ornn::Ref<Ornn::VertexBuffer> squareVB;
 		squareVB.reset(Ornn::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-			{ Ornn::ShaderDataType::Float3, "a_Position" }
-			});
+			{ Ornn::ShaderDataType::Float3, "a_Position" },
+			{ Ornn::ShaderDataType::Float2, "a_TexCoord" }
+		});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Ornn::IndexBuffer> squareIB;
+		Ornn::Ref<Ornn::IndexBuffer> squareIB;
 		squareIB.reset(Ornn::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -126,7 +127,42 @@ public:
 		)";
 
 		m_FlatColorShader.reset(Ornn::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
-	}
+	
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+			out vec2 v_TexCoord;
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+			in vec2 v_TexCoord;
+			
+			uniform sampler2D u_Texture;
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(Ornn::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+		m_Texture = Ornn::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_LogoTexture = Ornn::Texture2D::Create("assets/textures/ChernoLogo.png");
+
+		std::dynamic_pointer_cast<Ornn::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Ornn::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+}
 
 	void OnUpdate(Ornn::Timestep ts) override
 	{
@@ -171,7 +207,14 @@ public:
 			}
 		}
 
-		Ornn::Renderer::Submit(m_Shader, m_VertexArray);
+		m_Texture->Bind();
+		Ornn::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_LogoTexture->Bind();
+		Ornn::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+
+		//Triangle
+		//Ornn::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Ornn::Renderer::EndScene();
 	}
@@ -195,11 +238,13 @@ public:
 		//}
 	}
 private:
-	std::shared_ptr<Ornn::Shader> m_Shader;
-	std::shared_ptr<Ornn::VertexArray> m_VertexArray;
+	Ornn::Ref<Ornn::Shader> m_Shader;
+	Ornn::Ref<Ornn::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Ornn::Shader> m_FlatColorShader;
-	std::shared_ptr<Ornn::VertexArray> m_SquareVA;
+	Ornn::Ref<Ornn::Shader> m_FlatColorShader, m_TextureShader;
+	Ornn::Ref<Ornn::VertexArray> m_SquareVA;
+
+	Ornn::Ref<Ornn::Texture2D> m_Texture, m_LogoTexture;
 
 	Ornn::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

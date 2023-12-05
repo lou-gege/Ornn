@@ -19,6 +19,7 @@
 
 #include "Ornn/Renderer/Buffer.h"
 #include "Ornn/Renderer/Shader.h"
+#include "Ornn/Renderer/Texture.h"
 #include "Ornn/Renderer/VertexArray.h"
 
 #include "Ornn/Renderer/OrthographicCamera.h"
