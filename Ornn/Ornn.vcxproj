@@ -159,6 +159,7 @@
     <ClInclude Include="src\Ornn\LayerStack.h" />
     <ClInclude Include="src\Ornn\Log.h" />
     <ClInclude Include="src\Ornn\MouseButtonCodes.h" />
+    <ClInclude Include="src\Ornn\OrthographicCameraController.h" />
     <ClInclude Include="src\Ornn\Renderer\Buffer.h" />
     <ClInclude Include="src\Ornn\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Ornn\Renderer\OrthographicCamera.h" />
@@ -603,6 +604,7 @@
     <ClCompile Include="src\Ornn\Layer.cpp" />
     <ClCompile Include="src\Ornn\LayerStack.cpp" />
     <ClCompile Include="src\Ornn\Log.cpp" />
+    <ClCompile Include="src\Ornn\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Ornn\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Ornn\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Ornn\Renderer\RenderCommand.cpp" />
