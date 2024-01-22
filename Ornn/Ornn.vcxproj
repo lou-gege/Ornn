@@ -144,32 +144,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Ornn.h" />
-    <ClInclude Include="src\Ornn\Application.h" />
-    <ClInclude Include="src\Ornn\Core.h" />
+    <ClInclude Include="src\Ornn\Core\Application.h" />
+    <ClInclude Include="src\Ornn\Core\Core.h" />
+    <ClInclude Include="src\Ornn\Core\EntryPoint.h" />
+    <ClInclude Include="src\Ornn\Core\Input.h" />
+    <ClInclude Include="src\Ornn\Core\KeyCodes.h" />
+    <ClInclude Include="src\Ornn\Core\Layer.h" />
+    <ClInclude Include="src\Ornn\Core\LayerStack.h" />
+    <ClInclude Include="src\Ornn\Core\Log.h" />
+    <ClInclude Include="src\Ornn\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Ornn\Core\Timestep.h" />
-    <ClInclude Include="src\Ornn\EntryPoint.h" />
+    <ClInclude Include="src\Ornn\Core\Window.h" />
     <ClInclude Include="src\Ornn\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Ornn\Events\Event.h" />
     <ClInclude Include="src\Ornn\Events\KeyEvent.h" />
     <ClInclude Include="src\Ornn\Events\MouseEvent.h" />
     <ClInclude Include="src\Ornn\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Ornn\Input.h" />
-    <ClInclude Include="src\Ornn\KeyCodes.h" />
-    <ClInclude Include="src\Ornn\Layer.h" />
-    <ClInclude Include="src\Ornn\LayerStack.h" />
-    <ClInclude Include="src\Ornn\Log.h" />
-    <ClInclude Include="src\Ornn\MouseButtonCodes.h" />
-    <ClInclude Include="src\Ornn\OrthographicCameraController.h" />
     <ClInclude Include="src\Ornn\Renderer\Buffer.h" />
     <ClInclude Include="src\Ornn\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Ornn\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Ornn\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Ornn\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Ornn\Renderer\Renderer.h" />
     <ClInclude Include="src\Ornn\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Ornn\Renderer\Shader.h" />
     <ClInclude Include="src\Ornn\Renderer\Texture.h" />
     <ClInclude Include="src\Ornn\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Ornn\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -598,15 +598,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Ornn\Application.cpp" />
+    <ClCompile Include="src\Ornn\Core\Application.cpp" />
+    <ClCompile Include="src\Ornn\Core\Layer.cpp" />
+    <ClCompile Include="src\Ornn\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Ornn\Core\Log.cpp" />
     <ClCompile Include="src\Ornn\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Ornn\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Ornn\Layer.cpp" />
-    <ClCompile Include="src\Ornn\LayerStack.cpp" />
-    <ClCompile Include="src\Ornn\Log.cpp" />
-    <ClCompile Include="src\Ornn\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Ornn\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Ornn\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Ornn\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Ornn\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Ornn\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Ornn\Renderer\RendererAPI.cpp" />

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ornn/Core.h"
+#include "Ornn/Core/Core.h"
 #include "Layer.h"
 
 namespace Ornn {

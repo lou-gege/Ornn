@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "Application.h"
 
-#include "Ornn/Log.h"
+#include "Ornn/Core/Log.h"
 #include "Ornn/Renderer/Renderer.h"
 
-#include "Ornn/Input.h"
+#include "Ornn/Core/Input.h"
 
 #include <GLFW/glfw3.h> // temporal
 

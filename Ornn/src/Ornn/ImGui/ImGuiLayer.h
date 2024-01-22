@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ornn/Layer.h"
+#include "Ornn/Core/Layer.h"
 
 #include "Ornn/Events/ApplicationEvent.h"
 #include "Ornn/Events/KeyEvent.h"

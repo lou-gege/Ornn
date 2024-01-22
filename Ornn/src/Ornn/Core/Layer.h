@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ornn/Core.h"
+#include "Ornn/Core/Core.h"
 #include "Ornn/Events/Event.h"
 #include "Ornn/Core/Timestep.h"
 

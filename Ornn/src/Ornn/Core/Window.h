@@ -2,7 +2,7 @@
 
 #include "pch.h"
 
-#include "Ornn/Core.h"
+#include "Ornn/Core/Core.h"
 #include "Ornn/Events/Event.h"
 
 namespace Ornn {

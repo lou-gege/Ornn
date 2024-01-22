@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "OrthographicCameraController.h"
 
-#include "Ornn/Input.h"
-#include "Ornn/KeyCodes.h"
+#include "Ornn/Core/Input.h"
+#include "Ornn/Core/KeyCodes.h"
 
 namespace Ornn {
 

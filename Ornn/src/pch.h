@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Ornn/Log.h"
+#include "Ornn/Core/Log.h"
 
 #ifdef ORNN_PLATFORM_WINDOWS
 	#include <Windows.h>

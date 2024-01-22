@@ -3,9 +3,9 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "Events/Event.h"
+#include "Ornn/Events/Event.h"
 #include "Ornn/Events/ApplicationEvent.h"
-#include "Ornn/LayerStack.h"
+#include "Ornn/Core/LayerStack.h"
 
 #include "Ornn/ImGui/ImGuiLayer.h"
 

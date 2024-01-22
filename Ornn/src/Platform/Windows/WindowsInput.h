@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ornn/Input.h"
+#include "Ornn/Core/Input.h"
 
 namespace Ornn {
 

@@ -2,7 +2,7 @@
 
 #include <cstdint>
 #include <string>
-#include "Ornn/Core.h"
+#include "Ornn/Core/Core.h"
 
 namespace Ornn {
 
