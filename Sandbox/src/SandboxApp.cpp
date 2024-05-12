@@ -1,4 +1,5 @@
 #include <Ornn.h>
+#include "Ornn/Core/EntryPoint.h"
 
 #include "imgui/imgui.h"
 
@@ -7,13 +8,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Sandbox2D.h"
+
 class ExampleLayer :public Ornn::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		: Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{
-		m_VertexArray.reset(Ornn::VertexArray::Create());
+		m_VertexArray = Ornn::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -22,7 +25,7 @@ public:
 		};
 
 		Ornn::Ref<Ornn::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Ornn::VertexBuffer::Create(vertices, sizeof(vertices)));
+		vertexBuffer = Ornn::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		Ornn::BufferLayout layout = {
 			{Ornn::ShaderDataType::Float3, "a_Position"},
@@ -33,10 +36,10 @@ public:
 
 		uint32_t indices[3] = { 0, 1, 2 };
 		Ornn::Ref<Ornn::IndexBuffer> indexBuffer;
-		indexBuffer.reset(Ornn::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		indexBuffer = Ornn::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		m_SquareVA.reset(Ornn::VertexArray::Create());
+		m_SquareVA = Ornn::VertexArray::Create();
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
 			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
@@ -45,16 +48,16 @@ public:
 		};
 
 		Ornn::Ref<Ornn::VertexBuffer> squareVB;
-		squareVB.reset(Ornn::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB = Ornn::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVB->SetLayout({
 			{ Ornn::ShaderDataType::Float3, "a_Position" },
 			{ Ornn::ShaderDataType::Float2, "a_TexCoord" }
-		});
+			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		Ornn::Ref<Ornn::IndexBuffer> squareIB;
-		squareIB.reset(Ornn::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		squareIB = Ornn::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 
@@ -136,34 +139,21 @@ public:
 
 		std::dynamic_pointer_cast<Ornn::OpenGLShader>(textureShader)->Bind();
 		std::dynamic_pointer_cast<Ornn::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
-}
+	}
 
 	void OnUpdate(Ornn::Timestep ts) override
 	{
 		//ORNN_TRACE("Delta Time: {0}ms, FPS: {1}", ts.GetMilliseconds(), (int)(1.0f / ts.GetSeconds()));
 		//ORNN_INFO("ExampleLayer::Update");
-		if (Ornn::Input::IsKeyPressed(ORNN_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		else if (Ornn::Input::IsKeyPressed(ORNN_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 
-		if (Ornn::Input::IsKeyPressed(ORNN_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		else if (Ornn::Input::IsKeyPressed(ORNN_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
+		// Update
+		m_CameraController.OnUpdate(ts);
 
-		if (Ornn::Input::IsKeyPressed(ORNN_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed * ts;
-		else if (Ornn::Input::IsKeyPressed(ORNN_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed * ts;
-
+		// Render
 		Ornn::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Ornn::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Ornn::Renderer::BeginScene(m_Camera);
+		Ornn::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		//Ornn::Renderer::Submit(m_BlueShader, m_SquareVA);
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
@@ -202,16 +192,9 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Ornn::Event& event) override
+	void OnEvent(Ornn::Event& e) override
 	{
-		//ORNN_TRACE("{0}", event);
-		//if (event.GetEventType() == Ornn::EventType::KeyPressed)
-		//{
-		//	Ornn::KeyPressedEvent& e = (Ornn::KeyPressedEvent&)event;
-		//	if (e.GetKeyCode() == ORNN_KEY_TAB)
-		//		ORNN_TRACE("Tab key is pressed (event)!");
-		//	ORNN_TRACE("{0}", (char)e.GetKeyCode());
-		//}
+		m_CameraController.OnEvent(e);
 	}
 private:
 	Ornn::ShaderLibrary m_ShaderLibrary;
@@ -224,11 +207,7 @@ private:
 
 	Ornn::Ref<Ornn::Texture2D> m_Texture, m_LogoTexture;
 
-	Ornn::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 1.0f;
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+	Ornn::OrthographicsCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
@@ -238,7 +217,8 @@ class Sandbox :public Ornn::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer);
+		//PushLayer(new ExampleLayer);
+		PushLayer(new Sandbox2D);
 	}
 	~Sandbox()
 	{

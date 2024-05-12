@@ -24,8 +24,3 @@
 #include "Ornn/Renderer/VertexArray.h"
 
 #include "Ornn/Renderer/OrthographicCamera.h"
-// -----------------------------------
-
-// ---Entry Point-----------
-#include "Ornn/Core/EntryPoint.h"
-// -------------------------
