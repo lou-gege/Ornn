@@ -16,6 +16,7 @@
 
 // ---Renderer------------------------
 #include "Ornn/Renderer/Renderer.h"
+#include "Ornn/Renderer/Renderer2D.h"
 #include "Ornn/Renderer/RenderCommand.h"
 
 #include "Ornn/Renderer/Buffer.h"
