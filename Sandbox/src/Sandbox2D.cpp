@@ -24,6 +24,8 @@ void Sandbox2D::OnUpdate(Ornn::Timestep ts)
 	m_CameraController.OnUpdate(ts);
 
 	// Render
+	Ornn::Renderer2D::ResetStats();
+
 	Ornn::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 	Ornn::RenderCommand::Clear();
 
@@ -37,11 +39,32 @@ void Sandbox2D::OnUpdate(Ornn::Timestep ts)
 	Ornn::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f);
 	Ornn::Renderer2D::DrawRotatedQuad({ -2.0f, 0.0f, 0.0f }, { 1.0f, 1.0f }, rotation, m_CheckerboardTexture, 20.0f);
 	Ornn::Renderer2D::EndScene();
+
+	Ornn::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	for (float y = -5.0f; y < 5.0f; y += 0.5f)
+	{
+		for (float x = -5.0f; x < 5.0f; x += 0.5f)
+		{
+			glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.7f };
+			Ornn::Renderer2D::DrawQuad({ x, y }, { 0.45f, 0.45f }, color);
+		}
+	}
+	Ornn::Renderer2D::EndScene();
+
+	ORNN_TRACE("Delta Time: {0}ms, FPS: {1}", ts.GetMilliseconds(), (int)(1.0f / ts.GetSeconds()));
 }
 
 void Sandbox2D::OnImGuiRender()
 {
 	ImGui::Begin("Setting");
+
+	auto stats = Ornn::Renderer2D::GetStats();
+	ImGui::Text("Renderer2D Stats:");
+	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+	ImGui::Text("Quads: %d", stats.QuadCount);
+	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 	ImGui::End();
 }
