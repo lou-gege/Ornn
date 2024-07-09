@@ -152,7 +152,7 @@
     <ClInclude Include="src\Ornn\Core\Layer.h" />
     <ClInclude Include="src\Ornn\Core\LayerStack.h" />
     <ClInclude Include="src\Ornn\Core\Log.h" />
-    <ClInclude Include="src\Ornn\Core\MouseButtonCodes.h" />
+    <ClInclude Include="src\Ornn\Core\MouseCodes.h" />
     <ClInclude Include="src\Ornn\Core\Timestep.h" />
     <ClInclude Include="src\Ornn\Core\Window.h" />
     <ClInclude Include="src\Ornn\Events\ApplicationEvent.h" />
@@ -179,7 +179,6 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />

@@ -9,7 +9,7 @@
 
 #include "Ornn/Core/Input.h"
 #include "Ornn/Core/KeyCodes.h"
-#include "Ornn/Core/MouseButtonCodes.h"
+#include "Ornn/Core/MouseCodes.h"
 #include "Ornn/Renderer/OrthographicCameraController.h"
  
 #include "Ornn/ImGui/ImGuiLayer.h"

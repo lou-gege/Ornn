@@ -81,7 +81,7 @@
     <ClInclude Include="src\Ornn\Core\Log.h">
       <Filter>src\Ornn\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ornn\Core\MouseButtonCodes.h">
+    <ClInclude Include="src\Ornn\Core\MouseCodes.h">
       <Filter>src\Ornn\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Ornn\Core\Timestep.h">
@@ -161,9 +161,6 @@
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
