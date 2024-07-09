@@ -16,7 +16,7 @@ namespace Ornn {
 	class ORNN_API Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "Ornn App");
 		virtual ~Application();
 
 		void Run();
