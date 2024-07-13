@@ -14,6 +14,9 @@
  
 #include "Ornn/ImGui/ImGuiLayer.h"
 
+#include "Ornn/Scene/Scene.h"
+#include "Ornn/Scene/Components.h"
+
 // ---Renderer------------------------
 #include "Ornn/Renderer/Renderer.h"
 #include "Ornn/Renderer/Renderer2D.h"

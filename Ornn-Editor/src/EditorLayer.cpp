@@ -19,6 +19,14 @@ namespace Ornn {
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
+
+		m_ActiveScene = CreateRef<Scene>();
+
+		auto square = m_ActiveScene->CreateEntity();
+		m_ActiveScene->Reg().emplace<TransformComponent>(square);
+		m_ActiveScene->Reg().emplace<SpriteRendererComponent>(square, glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
+
+		m_SquareEntity = square;
 	}
 
 	void EditorLayer::OnDetach()
@@ -27,8 +35,18 @@ namespace Ornn {
 
 	void EditorLayer::OnUpdate(Timestep ts)
 	{
+		// Resize
+		if (FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+			m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
+			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
+		{
+			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+		}
+
 		// Update
-		m_CameraController.OnUpdate(ts);
+		if (m_ViewportFocused)
+			m_CameraController.OnUpdate(ts);
 
 		// Render
 		Renderer2D::ResetStats();
@@ -37,7 +55,7 @@ namespace Ornn {
 		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		RenderCommand::Clear();
 
-		static float rotation = 0.0f;
+		/*static float rotation = 0.0f;
 		rotation += ts * 50.0f;
 
 		Renderer2D::BeginScene(m_CameraController.GetCamera());
@@ -57,7 +75,12 @@ namespace Ornn {
 				Renderer2D::DrawQuad({ x, y }, { 0.45f, 0.45f }, color);
 			}
 		}
+		Renderer2D::EndScene();*/
+
+		Renderer2D::BeginScene(m_CameraController.GetCamera());
+		m_ActiveScene->OnUpdate(ts);
 		Renderer2D::EndScene();
+
 		m_Framebuffer->Unbind();
 
 		ORNN_TRACE("Delta Time: {0}ms, FPS: {1}", ts.GetMilliseconds(), (int)(1.0f / ts.GetSeconds()));
@@ -134,20 +157,24 @@ namespace Ornn {
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+		auto& squareColor = m_ActiveScene->Reg().get<SpriteRendererComponent>(m_SquareEntity).Color;
+		ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
 
 		ImGui::End();
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");
-		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-		if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize))
-		{
-			m_Framebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
-			m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 
-			m_CameraController.OnResize(viewportPanelSize.x, viewportPanelSize.y);
-		}
+		m_ViewportFocused = ImGui::IsWindowFocused();
+		m_ViewportHovered = ImGui::IsWindowHovered();
+
+
+		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+
+		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+
+		m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
+
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 		ImGui::End();

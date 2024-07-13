@@ -18,6 +18,7 @@ IncludeDir["Glad"] = "Ornn/vendor/Glad/include"
 IncludeDir["ImGui"] = "Ornn/vendor/imgui"
 IncludeDir["glm"] = "Ornn/vendor/glm"
 IncludeDir["stb_image"] = "Ornn/vendor/stb_image"
+IncludeDir["entt"] = "Ornn/vendor/entt/include"
 
 include "Ornn/vendor/GLFW" --copy the premake5.lua in GLFW/ to here
 include "Ornn/vendor/Glad"
@@ -106,7 +107,8 @@ project "Ornn"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
@@ -164,7 +166,8 @@ project "Ornn-Editor"
 		"Ornn/vendor/spdlog/include",
 		"Ornn/src",
 		"Ornn/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
