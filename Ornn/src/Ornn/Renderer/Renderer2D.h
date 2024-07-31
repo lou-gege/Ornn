@@ -3,6 +3,7 @@
 #include "OrthographicCamera.h"
 
 #include "Texture.h"
+#include "Camera.h"
 
 namespace Ornn {
 
@@ -12,6 +13,7 @@ namespace Ornn {
 		static void Init();
 		static void Shutdown();
 
+		static void BeginScene(const Camera& camera, glm::mat4& transform);
 		static void BeginScene(const OrthographicCamera& camera);
 		static void EndScene();
 		static void Flush();

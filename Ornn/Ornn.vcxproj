@@ -161,6 +161,7 @@
     <ClInclude Include="src\Ornn\Events\MouseEvent.h" />
     <ClInclude Include="src\Ornn\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Ornn\Renderer\Buffer.h" />
+    <ClInclude Include="src\Ornn\Renderer\Camera.h" />
     <ClInclude Include="src\Ornn\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Ornn\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Ornn\Renderer\OrthographicCamera.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="src\Ornn\Scene\Components.h" />
     <ClInclude Include="src\Ornn\Scene\Entity.h" />
     <ClInclude Include="src\Ornn\Scene\Scene.h" />
+    <ClInclude Include="src\Ornn\Scene\SceneCamera.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
@@ -622,6 +624,7 @@
     <ClCompile Include="src\Ornn\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Ornn\Scene\Entity.cpp" />
     <ClCompile Include="src\Ornn\Scene\Scene.cpp" />
+    <ClCompile Include="src\Ornn\Scene\SceneCamera.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
