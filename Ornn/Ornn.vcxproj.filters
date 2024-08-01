@@ -1424,6 +1424,7 @@
     <ClInclude Include="src\Ornn\Scene\Scene.h" />
     <ClInclude Include="src\Ornn\Renderer\Camera.h" />
     <ClInclude Include="src\Ornn\Scene\SceneCamera.h" />
+    <ClInclude Include="src\Ornn\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ornn\Core\Application.cpp">
